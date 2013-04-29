@@ -1,0 +1,24 @@
+!!! 5
+html(ng-app='App')
+  head
+    meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+    link(rel='stylesheet', type='text/css', href='/components/components-bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/style/style.css')
+
+    title seed
+body(ng-controller='AppCtrl')
+
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        a.brand(href='#', ng-cloak) Hello {{ message }}
+
+  .container
+    input(ng-model='message')
+
+  script(type='text/javascript', src='/components/jquery/jquery.js')
+  script(type='text/javascript', src='/components/angular/angular.min.js')
+  script(type='text/javascript', src='/components/components-bootstrap/js/bootstrap.min.js')
+  script(type='text/javascript', src='/js/app.js')
