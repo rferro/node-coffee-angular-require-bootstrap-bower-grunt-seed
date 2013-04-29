@@ -14,8 +14,8 @@ module.exports = (grunt) ->
           files: ['src/**/*.less']
           tasks: ['less:dev']
         jade:
-          files: ['src/**/*.jade']
-          tasks: ['copy:views']
+          files: ['src/views/**']
+          tasks: ['clean:viewsDev', 'copy:viewsDev']
       coffee:
         dev:
           options:
@@ -115,6 +115,8 @@ module.exports = (grunt) ->
       clean:
         dev:
           src: '_dev'
+        viewsDev:
+          src: '_dev/views'
         build:
           src: '_build'
         releases:
