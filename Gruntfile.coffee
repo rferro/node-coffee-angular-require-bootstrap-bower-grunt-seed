@@ -119,8 +119,6 @@ module.exports = (grunt) ->
           src: '_build'
         releases:
           src: '_releases'
-        components:
-          src: 'components'
       compress:
         build:
           options:

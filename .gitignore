@@ -3,4 +3,7 @@ npm-debug.log
 node_modules
 *.sublime-project
 *.sublime-workspace
-build
+_build
+_dev
+_releases
+components
