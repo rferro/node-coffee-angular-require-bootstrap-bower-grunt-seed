@@ -70,11 +70,11 @@ module.exports = (grunt) ->
               loops:      false
               unused:     false
             mangle:
-              except: [ 'undefined' ]
+              false
           files: [
             expand: true
             cwd:    '_build'
-            src:    ['**/*.js', '!public/components/**/*']
+            src:    ['**/*.js', '!public/components/**/*', '!node_modules/**/*']
             dest:   '_build'
             ext:    '.js'
           ]
@@ -106,6 +106,13 @@ module.exports = (grunt) ->
             cwd:    'components'
             src:    '**'
             dest:   '_build/public/components'
+          ]
+        nodeModulesBuild:
+          files: [
+            expand: true
+            cwd:    'node_modules'
+            src:    '**'
+            dest:   '_build/node_modules'
           ]
         core:
           files: [
@@ -158,6 +165,7 @@ module.exports = (grunt) ->
       'copy:core'
       'copy:viewsBuild'
       'copy:componentsBuild'
+      'copy:nodeModulesBuild'
       'coffee:build'
       'less:build'
       'uglify:build'
