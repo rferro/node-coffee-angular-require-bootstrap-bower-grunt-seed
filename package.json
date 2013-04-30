@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "dependencies": {
     "express": "~3.2.0",
-    "jade": "~0.30.0"
+    "jade": "~0.30.0",
+    "socket.io": "~0.9.14"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
