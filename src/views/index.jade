@@ -19,11 +19,27 @@ body(ng-controller='AppCtrl')
 
   .container
     .row
-      .span6
-        h1 Seed Project
-      .span6
-        h2 Socket.io Events
-        table.table.table-condensed.table-bordered.table-hover(ng-cloak)
+      h1 seed-node-coffee-grunt-bower
+    .row
+      .span6(ng-controller='SocketCtrl')
+        h2 Socket.io Events 1
+        p.text-center
+          .btn-group
+            button.btn(ng-click="start()") Start
+            button.btn(ng-click="stop()") Stop
+        .alert.text-center(ng-hide="messages.length") No Data
+        table.table.table-condensed.table-bordered.table-hover(ng-cloak, ng-show="messages.length")
+          tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
+            td {{ message.date | date:'medium' }}
+            td {{ message.data }}
+      .span6(ng-controller='SocketCtrl')
+        h2 Socket.io Events 2
+        p.text-center
+          .btn-group
+            button.btn(ng-click="start()") Start
+            button.btn(ng-click="stop()") Stop
+        .alert.text-center(ng-hide="messages.length") No Data
+        table.table.table-condensed.table-bordered.table-hover(ng-cloak, ng-show="messages.length")
           tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
             td {{ message.date | date:'medium' }}
             td {{ message.data }}

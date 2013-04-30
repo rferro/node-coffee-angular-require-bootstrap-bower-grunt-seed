@@ -31,11 +31,13 @@ app.configure 'development', ->
 io.sockets.on 'connection', (socket) ->
   socket.emit 'serverEvent', 'client connect event'
 
+  i = 0
+
   setTimeout(
     ->
-      socket.emit 'serverEvent', 'test event'
-      setTimeout arguments.callee, 2000
-    2000
+      socket.emit 'serverEvent', 'test event ' + ++i
+      setTimeout arguments.callee, 1000
+    0
   )
 
 app.get '/', (req, res) ->

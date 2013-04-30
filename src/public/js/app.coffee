@@ -1,23 +1,35 @@
 
 app = angular.module 'App', []
 
-app.factory 'socket', ($rootScope) ->
-  socket = io.connect()
+app.service 'socket', ($rootScope) ->
+  @getInstance = (host, details) ->
+    socket = io.connect host, details
 
-  on: (eventName, callback) ->
-    socket.on eventName, ->
-      args = arguments
-      $rootScope.$apply -> callback.apply socket, args
+    on: (eventName, callback) ->
+      socket.on eventName, ->
+        args = arguments
+        $rootScope.$apply -> callback.apply socket, args
+    emit: (eventName, data, callback) ->
+      socket.emit eventName, data, ->
+        args = arguments
+        $rootScope.$apply -> callback.apply socket, args if callback
+    removeAllListeners: ->
+      socket.removeAllListeners()
 
-  emit: (eventName, data, callback) ->
-    socket.emit eventName, data, ->
-      args = arguments
-      $rootScope.$apply -> callback.apply socket, args if callback
+app.controller 'AppCtrl', ($scope) ->
+  $scope.name = 'World'
 
-app.controller 'AppCtrl', ($scope, socket) ->
-  $scope.name     = 'World'
+app.controller 'SocketCtrl', ($scope, socket) ->
+  socket          = socket.getInstance null, 'force new connection': true
   $scope.messages = []
 
-  socket.on 'serverEvent', (data) ->
-    $scope.messages.push date: Date.now(), data: data
-    $scope.messages = $scope.messages.splice -5
+  $scope.start = ->
+    socket.on 'serverEvent', (data) ->
+      $scope.messages.push date: Date.now(), data: data
+      $scope.messages = $scope.messages.splice -5
+
+  $scope.stop = ->
+    socket.removeAllListeners()
+    $scope.messages = []
+
+  $scope.start()
