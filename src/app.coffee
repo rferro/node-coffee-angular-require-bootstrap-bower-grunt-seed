@@ -22,11 +22,27 @@ app.configure ->
 
   app.use express.bodyParser()
   app.use express.methodOverride()
-  app.use app.router
   app.use express.static path.join(__dirname, 'public')
+  app.use app.router
 
 app.configure 'development', ->
   app.use express.errorHandler()
+
+debugDelay = 2000
+
+app.get '/partials/:partial.html', (req, res) ->
+  setTimeout(
+    ->
+      res.render "partials/#{req.params.partial}"
+    debugDelay
+  )
+
+app.get '*', (req, res) ->
+  setTimeout(
+    ->
+      res.render 'index'
+    debugDelay
+  )
 
 io.sockets.on 'connection', (socket) ->
   socket.emit 'serverEvent', 'client connect event'
@@ -39,8 +55,5 @@ io.sockets.on 'connection', (socket) ->
       setTimeout arguments.callee, 1000
     0
   )
-
-app.get '/', (req, res) ->
-  res.render 'index'
 
 server.listen app.get('port'), -> console.log 'on port ' + app.get('port')

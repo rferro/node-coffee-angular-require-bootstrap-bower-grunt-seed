@@ -16,6 +16,9 @@ module.exports = (grunt) ->
         jade:
           files: ['src/views/**']
           tasks: ['clean:viewsDev', 'copy:viewsDev']
+        componentsDev:
+          files: ['components/**']
+          tasks: ['clean:componentsDev', 'copy:componentsDev']
       coffee:
         dev:
           options:
@@ -69,8 +72,7 @@ module.exports = (grunt) ->
               join_vars:  false
               loops:      false
               unused:     false
-            mangle:
-              false
+            mangle:       true
           files: [
             expand: true
             cwd:    '_build'
@@ -124,8 +126,12 @@ module.exports = (grunt) ->
           src: '_dev'
         viewsDev:
           src: '_dev/views'
+        componentsDev:
+          src: '_dev/components'
         build:
           src: '_build'
+        componentsBuild:
+          src: '_build/components'
         releases:
           src: '_releases'
       compress:
@@ -143,7 +149,6 @@ module.exports = (grunt) ->
     'dev:config'
     [
       'clean:dev'
-      'copy:componentsDev'
       'copy:componentsDev'
       'dev:make'
     ]
@@ -169,7 +174,7 @@ module.exports = (grunt) ->
       'coffee:build'
       'less:build'
       'uglify:build'
-      'compress:build'
-      'clean:build'
+      # 'compress:build'
+      # 'clean:build'
     ]
   )

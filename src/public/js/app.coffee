@@ -1,35 +1,18 @@
 
-app = angular.module 'App', []
+define ['angular'], (angular) ->
+  angular.module('App', [])
+    .config(
+      [
+        '$routeProvider'
+        '$locationProvider'
+        ($routeProvider, $locationProvider) ->
+          $routeProvider
+            .when('/',      templateUrl: 'partials/view0.html', controller: 'ViewCtrl0')
+            .when('/view1', templateUrl: 'partials/view1.html', controller: 'ViewCtrl1')
+            .when('/view2', templateUrl: 'partials/view2.html', controller: 'ViewCtrl2')
+            .when('/view3', templateUrl: 'partials/view3.html', controller: 'ViewCtrl3')
+            .otherwise(redirectTo: '/')
 
-app.service 'socket', ($rootScope) ->
-  @getInstance = (host, details) ->
-    socket = io.connect host, details
-
-    on: (eventName, callback) ->
-      socket.on eventName, ->
-        args = arguments
-        $rootScope.$apply -> callback.apply socket, args
-    emit: (eventName, data, callback) ->
-      socket.emit eventName, data, ->
-        args = arguments
-        $rootScope.$apply -> callback.apply socket, args if callback
-    removeAllListeners: ->
-      socket.removeAllListeners()
-
-app.controller 'AppCtrl', ($scope) ->
-  $scope.name = 'World'
-
-app.controller 'SocketCtrl', ($scope, socket) ->
-  socket          = socket.getInstance null, 'force new connection': true
-  $scope.messages = []
-
-  $scope.start = ->
-    socket.on 'serverEvent', (data) ->
-      $scope.messages.push date: Date.now(), data: data
-      $scope.messages = $scope.messages.splice -5
-
-  $scope.stop = ->
-    socket.removeAllListeners()
-    $scope.messages = []
-
-  $scope.start()
+          $locationProvider.html5Mode true
+      ]
+    )

@@ -1,25 +1,30 @@
 !!! 5
-html(ng-app='App')
+html
   head
     meta(charset='utf-8')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title seed
 
     link(rel='stylesheet', type='text/css', href='/components/components-bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/style/style.css')
 
-    title seed
+    script(data-main='js/main', src='/components/requirejs/require.js')
 body(ng-controller='AppCtrl')
-
   .navbar.navbar-inverse.navbar-fixed-top
     .navbar-inner
       .container
-        a.brand(href='#', ng-cloak) Hello {{ name }}
-        .navbar-form.pull-right
-          input.span2(type='text', ng-model='name', ng-cloak)
-
+        a.brand(href='/', ng-cloak) seed-node-coffee-grunt-bower
   .container
     .row
-      h1 seed-node-coffee-grunt-bower
+      .span12
+        h2 ng-view
+        p.text-center
+          .btn-group
+            a.btn(href='/') /
+            a.btn(href='/view1') /view1
+            a.btn(href='/view2') /view2
+            a.btn(href='/view3') /view3
+        div(ng-view)
     .row
       .span6(ng-controller='SocketCtrl')
         h2 Socket.io Events 1
@@ -28,7 +33,7 @@ body(ng-controller='AppCtrl')
             button.btn(ng-click="start()") Start
             button.btn(ng-click="stop()") Stop
         .alert.text-center(ng-hide="messages.length") No Data
-        table.table.table-condensed.table-bordered.table-hover(ng-cloak, ng-show="messages.length")
+        table.table.table-condensed.table-bordered.table-striped.table-hover(ng-cloak, ng-show="messages.length")
           tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
             td {{ message.date | date:'medium' }}
             td {{ message.data }}
@@ -39,13 +44,7 @@ body(ng-controller='AppCtrl')
             button.btn(ng-click="start()") Start
             button.btn(ng-click="stop()") Stop
         .alert.text-center(ng-hide="messages.length") No Data
-        table.table.table-condensed.table-bordered.table-hover(ng-cloak, ng-show="messages.length")
+        table.table.table-condensed.table-bordered.table-striped.table-hover(ng-cloak, ng-show="messages.length")
           tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
             td {{ message.date | date:'medium' }}
             td {{ message.data }}
-
-  script(type='text/javascript', src='/components/jquery/jquery.js')
-  script(type='text/javascript', src='/components/angular/angular.min.js')
-  script(type='text/javascript', src='/components/components-bootstrap/js/bootstrap.min.js')
-  script(type='text/javascript', src='/socket.io/socket.io.js')
-  script(type='text/javascript', src='/js/app.js')
