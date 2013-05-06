@@ -28,7 +28,7 @@ app.configure ->
 app.configure 'development', ->
   app.use express.errorHandler()
 
-debugDelay = 2000
+debugDelay = 0
 
 app.get '/partials/:partial.html', (req, res) ->
   setTimeout(

@@ -1,6 +1,5 @@
 
 define ['app'], (app) ->
-
   app.controller 'AppCtrl', ['$scope', ($scope) ->
     $scope.name = 'World'
   ]
