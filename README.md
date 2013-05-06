@@ -1,10 +1,9 @@
-# seed-node-coffee-grunt-bower #
+# node-coffee-angular-require-bootstrap-bower-grunt-seed #
 
 ```
-git clone https://github.com/rferro/seed-node-coffee-grunt-bower.git
-cd seed-node-coffee-grunt-bower
-npm install
-bower install
+git clone https://github.com/rferro/node-coffee-angular-require-bootstrap-bower-grunt-seed.git
+cd node-coffee-angular-require-bootstrap-bower-grunt-seed
+npm install && bower install
 grunt [dev:config|dev:make|build]
 ```
 
