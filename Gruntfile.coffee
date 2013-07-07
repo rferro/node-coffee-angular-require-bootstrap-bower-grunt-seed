@@ -137,7 +137,8 @@ module.exports = (grunt) ->
       compress:
         build:
           options:
-            archive:  '_releases/<%= pkg.name %>-<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM") %>.zip'
+            archive:  '_releases/<%= pkg.name %>-<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM") %>.tgz'
+            mode: 'tgz'
           files: [
             expand:   true
             cwd:      '_build'
