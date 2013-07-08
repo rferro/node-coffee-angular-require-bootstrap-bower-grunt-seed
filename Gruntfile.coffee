@@ -4,8 +4,150 @@ module.exports = (grunt) ->
 
   grunt.initConfig(
       pkg: grunt.file.readJSON('package.json')
-      meta:
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      env:
+        dev:
+          NODE_ENV: 'development'
+        build:
+          NODE_ENV: 'production'
+      less:
+        options:
+          report: false
+        dev:
+          options:
+            compress: false
+          files: [
+            {
+              expand: true
+              cwd:    'src'
+              src:    '**/*.less'
+              dest:   '_dev'
+              ext:    '.css'
+            }
+          ]
+        build:
+          options:
+            compress: true
+          files: [
+            {
+              expand: true
+              cwd:    'src'
+              src:    '**/*.less'
+              dest:   '_build'
+              ext:    '.css'
+            }
+          ]
+      coffee:
+        options:
+          bare: false
+        dev:
+          files: [
+            {
+              expand: true
+              cwd:    'src'
+              src:    '**/*.coffee'
+              dest:   '_dev'
+              ext:    '.js'
+            }
+          ]
+        build:
+          files: [
+            {
+              expand: true
+              cwd:    'src'
+              src:    ['**/*.coffee']
+              dest:   '_build'
+              ext:    '.js'
+            }
+          ]
+      uglify:
+        options:
+          report:           false
+          preserveComments: false
+          banner:           '// <%= pkg.name %> <%= pkg.version %>\n// <%= grunt.template.today("yyyy-mm-dd HH:MM:ss Z") %>\n\n'
+        dev:
+          options:
+            mangle:   false
+            compress: false
+            beautify:
+              beautify:     true
+              indent_level: 2
+              ascii_only:   true
+          files: [
+            {
+              expand: true
+              cwd:    '_build'
+              src:    ['**/*.js']
+              dest:   '_build'
+              ext:    '.js'
+            }
+          ]
+        build:
+          options:
+            mangle:   true
+            compress: false
+            beautify: false
+          files: [
+            {
+              expand: true
+              cwd:    '_build'
+              src:    ['**/*.js']
+              dest:   '_build'
+              ext:    '.js'
+            }
+          ]
+      copy:
+        dev:
+          files: [
+            {
+              expand: true
+              cwd:    'src/views'
+              src:    '**'
+              dest:   '_dev/views'
+            }
+            {
+              expand: true
+              cwd:    'components'
+              src:    '**'
+              dest:   '_dev/public/components'
+            }
+          ]
+        dev_views:
+          files: [
+            {
+              expand: true
+              cwd:    'src/views'
+              src:    '**'
+              dest:   '_dev/views'
+            }
+          ]
+        dev_components:
+          files: [
+            {
+              expand: true
+              cwd:    'components'
+              src:    '**'
+              dest:   '_dev/public/components'
+            }
+          ]
+        build:
+          files: [
+            {
+              expand: true
+              cwd:    'src/views'
+              src:    '**'
+              dest:   '_build/views'
+            }
+            {
+              expand: true
+              cwd:    'components'
+              src:    '**'
+              dest:   '_build/public/components'
+            }
+            {
+              src:    'package.json'
+              dest:   '_build/package.json'
+            }
+          ]
       watch:
         coffee:
           files: ['src/**/*.coffee']
@@ -15,167 +157,64 @@ module.exports = (grunt) ->
           tasks: ['less:dev']
         jade:
           files: ['src/views/**']
-          tasks: ['clean:viewsDev', 'copy:viewsDev']
-        componentsDev:
+          tasks: ['clean:dev_views', 'copy:dev_views']
+        components:
           files: ['components/**']
-          tasks: ['clean:componentsDev', 'copy:componentsDev']
-      coffee:
-        dev:
-          options:
-            bare: false
-          files: [
-            expand: true
-            cwd:    'src'
-            src:    '**/*.coffee'
-            dest:   '_dev'
-            ext:    '.js'
-          ]
-        build:
-          options:
-            bare: false
-          files: [
-            expand: true
-            cwd:    'src'
-            src:    '**/*.coffee'
-            dest:   '_build'
-            ext:    '.js'
-          ]
-      less:
-        dev:
-          options:
-            compress: false
-          files: [
-            expand: true
-            cwd:    'src'
-            src:    '**/*.less'
-            dest:   '_dev'
-            ext:    '.css'
-          ]
-        build:
-          options:
-            compress: true
-          files: [
-            expand: true
-            cwd:    'src'
-            src:    '**/*.less'
-            dest:   '_build'
-            ext:    '.css'
-          ]
-      uglify:
-        build:
-          options:
-            preserveComments: 'some'
-            beautify:
-              ascii_only: true
-            compress:
-              hoist_funs: false
-              join_vars:  false
-              loops:      false
-              unused:     false
-            mangle:       true
-          files: [
-            expand: true
-            cwd:    '_build'
-            src:    ['**/*.js', '!public/components/**/*', '!node_modules/**/*']
-            dest:   '_build'
-            ext:    '.js'
-          ]
-      copy:
-        viewsDev:
-          files: [
-            expand: true
-            cwd:    'src/views'
-            src:    '**'
-            dest:   '_dev/views'
-          ]
-        viewsBuild:
-          files: [
-            expand: true
-            cwd:    'src/views'
-            src:    '**'
-            dest:   '_build/views'
-          ]
-        componentsDev:
-          files: [
-            expand: true
-            cwd:    'components'
-            src:    '**'
-            dest:   '_dev/public/components'
-          ]
-        componentsBuild:
-          files: [
-            expand: true
-            cwd:    'components'
-            src:    '**'
-            dest:   '_build/public/components'
-          ]
-        nodeModulesBuild:
-          files: [
-            expand: true
-            cwd:    'node_modules'
-            src:    '**'
-            dest:   '_build/node_modules'
-          ]
-        core:
-          files: [
-            src:    'package.json'
-            dest:   '_build/package.json'
-          ]
+          tasks: ['clean:dev_components', 'copy:dev_components']
       clean:
+        dev_views:
+          src: '_dev/views'
+        dev_components:
+          src: '_dev/components'
         dev:
           src: '_dev'
-        viewsDev:
-          src: '_dev/views'
-        componentsDev:
-          src: '_dev/components'
         build:
           src: '_build'
-        componentsBuild:
-          src: '_build/components'
         releases:
           src: '_releases'
+      shell:
+        npmInstallBuild:
+          command: 'npm install'
+          options:
+            stdout: true
+            stderr: true
+            execOptions:
+              cwd: '_build'
       compress:
         build:
           options:
-            archive:  '_releases/<%= pkg.name %>-<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM") %>.tgz'
-            mode: 'tgz'
+            archive: '_releases/<%= pkg.name %>-<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM") %>.tar'
+            mode:    'tar'
           files: [
-            expand:   true
-            cwd:      '_build'
-            src:      '**'
+            expand:  true
+            cwd:     '_build'
+            src:     '**'
           ]
   )
 
   grunt.registerTask(
-    'dev:config'
+    'dev'
     [
+      'env:dev'
       'clean:dev'
-      'copy:componentsDev'
-      'dev:make'
-    ]
-  )
-
-  grunt.registerTask(
-    'dev:make'
-    [
       'coffee:dev'
+      'uglify:dev'
       'less:dev'
-      'copy:viewsDev'
+      'copy:dev'
     ]
   )
 
   grunt.registerTask(
     'build'
     [
+      'env:build'
       'clean:build'
-      'copy:core'
-      'copy:viewsBuild'
-      'copy:componentsBuild'
-      'copy:nodeModulesBuild'
       'coffee:build'
-      'less:build'
       'uglify:build'
-      # 'compress:build'
-      # 'clean:build'
+      'less:build'
+      'copy:build'
+      'shell:npmInstallBuild'
+      'compress:build'
+      'clean:build'
     ]
   )
