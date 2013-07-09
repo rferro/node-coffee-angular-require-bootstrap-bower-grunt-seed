@@ -233,8 +233,8 @@ module.exports = (grunt) ->
       'less:build'
       'copy:build'
       'removeDevDependencies:build'
-      # 'shell:npmInstallBuild'
-      # 'compress:build'
-      # 'clean:build'
+      'shell:npmInstallBuild'
+      'compress:build'
+      'clean:build'
     ]
   )
