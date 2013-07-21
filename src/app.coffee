@@ -28,21 +28,12 @@ app.configure ->
 app.configure 'development', ->
   app.use express.errorHandler()
 
-debugDelay = 0
 
 app.get '/partials/:partial.html', (req, res) ->
-  setTimeout(
-    ->
-      res.render "partials/#{req.params.partial}"
-    debugDelay
-  )
+  res.render "partials/#{req.params.partial}"
 
 app.get '*', (req, res) ->
-  setTimeout(
-    ->
-      res.render 'index'
-    debugDelay
-  )
+  res.render 'index'
 
 io.sockets.on 'connection', (socket) ->
   socket.emit 'serverEvent', 'client connect event'
