@@ -28,6 +28,7 @@ app.configure ->
 app.configure 'development', ->
   app.use express.errorHandler()
 
+app.locals.package = require './package'
 
 app.get '/partials/:partial.html', (req, res) ->
   res.render "partials/#{req.params.partial}"
