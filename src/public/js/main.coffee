@@ -1,6 +1,6 @@
 
 require.config
-  baseUrl: 'js'
+  baseUrl: '/js'
   paths:
     'jquery':    '/components/jquery/jquery'
     'angular':   '/components/angular/angular.min'
@@ -9,17 +9,21 @@ require.config
   shim:
     'angular':
       exports: 'angular'
+      deps: ['jquery']
+    'bootstrap':
+      deps: ['jquery']
+    'app':
+      deps: ['angular', 'bootstrap', 'socket.io']
 
-require ['jquery', 'angular', 'bootstrap', 'socket.io'], ->
-  require(
-    [
-      'angular'
-      'app'
-      'app/services'
-      'app/controllers'
-      'app/directives'
-      'app/filters'
-    ],
-    (angular) ->
-      angular.bootstrap document, ['app']
-  )
+require(
+  [
+    'angular'
+    'app'
+    'app/services'
+    'app/controllers'
+    'app/directives'
+    'app/filters'
+  ],
+  (angular) ->
+    angular.bootstrap document, ['app']
+)
