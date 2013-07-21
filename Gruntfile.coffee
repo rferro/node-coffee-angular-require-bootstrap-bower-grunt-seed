@@ -114,6 +114,13 @@ module.exports = (grunt) ->
             dest:   '<%= dirs.dev %>/public/components'
           }
         ]
+      dev_package:
+        files: [
+          {
+            src:    'package.json'
+            dest:   '<%= dirs.dev %>/package.json'
+          }
+        ]
       dev_views:
         files: [
           {
@@ -164,6 +171,9 @@ module.exports = (grunt) ->
       components:
         files: ['components/**']
         tasks: ['clean:dev_components', 'copy:dev_components']
+      package:
+        files: ['package.json']
+        tasks: ['copy:dev_package', 'removeDevDependencies:dev']
     clean:
       dev_views:
         src: '<%= dirs.dev %>/views'
@@ -194,6 +204,8 @@ module.exports = (grunt) ->
           src:    '**'
         ]
     removeDevDependencies:
+      dev:
+        src: '<%= dirs.dev %>/package.json'
       build:
         src: '<%= dirs.build %>/package.json'
   )
@@ -220,6 +232,8 @@ module.exports = (grunt) ->
       'uglify:dev'
       'less:dev'
       'copy:dev'
+      'copy:dev_package'
+      'removeDevDependencies:dev'
     ]
   )
 
