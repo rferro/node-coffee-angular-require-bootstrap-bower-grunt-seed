@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title node-coffee-angular-require-bootstrap-bower-grunt-seed
+    title= package.name
 
     link(rel='stylesheet', type='text/css', href='/components/components-bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/style/style.css')
@@ -13,7 +13,8 @@ body(ng-controller='AppCtrl')
   .navbar.navbar-inverse.navbar-fixed-top
     .navbar-inner
       .container-fluid
-        a.brand(href='/', ng-cloak) node-coffee-angular-require-bootstrap-bower-grunt-seed
+        a.brand(href='/', ng-cloak)= package.name
+        p.navbar-text.pull-right= package.version
   .container-fluid
     .row-fluid
       .span12
