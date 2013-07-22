@@ -23,8 +23,17 @@ define ['angular'], (angular) ->
     $scope.start()
   ]
 
-  app.controller 'ViewCtrl0', ['$scope', ($scope) ->
-    $scope.text = 'ViewCtrl0 Text'
+  app.controller 'ViewCtrl0', ['$scope', 'socket', ($scope, socket) ->
+    socket         = socket.getInstance null, 'force new connection': true
+    $scope.text    = 'ViewCtrl0 Text'
+    $scope.loadavg = []
+    $scope.uptime  = 0
+
+    socket.on 'loadavg', (data) ->
+      $scope.loadavg = data.map (v) -> v.toFixed(2)
+
+    socket.on 'uptime', (data) ->
+      $scope.uptime = parseInt(data / 60)
   ]
 
   app.controller 'ViewCtrl1', ['$scope', ($scope) ->
