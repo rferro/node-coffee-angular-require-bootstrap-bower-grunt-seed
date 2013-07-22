@@ -25,10 +25,10 @@ app.configure ->
   app.use express.static path.join(__dirname, 'public')
   app.use app.router
 
+  app.locals.package = require './package'
+
 app.configure 'development', ->
   app.use express.errorHandler()
-
-app.locals.package = require './package'
 
 app.get '/partials/:partial.html', (req, res) ->
   res.render "partials/#{req.params.partial}"
