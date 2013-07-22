@@ -32,6 +32,7 @@ require.config
     # plugins
     'css':         '/components/require-css/css'
     'normalize':   '/components/require-css/normalize'
+    'domReady':    '/components/requirejs-domready/domReady'
   shim:
     'angular':
       exports: 'angular'
@@ -51,5 +52,5 @@ require.config
         'services'
       ]
 
-require ['angular', 'app'], (angular, app) ->
+require ['angular', 'app', 'domReady!'], (angular, app) ->
   angular.bootstrap document, ['app']
