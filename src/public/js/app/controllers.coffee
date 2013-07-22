@@ -34,6 +34,10 @@ define ['angular'], (angular) ->
 
     socket.on 'uptime', (data) ->
       $scope.uptime = parseInt(data / 60)
+
+    $scope.$on '$destroy', ->
+      socket.removeAllListeners('loadavg')
+      socket.removeAllListeners('uptime')
   ]
 
   app.controller 'ViewCtrl1', ['$scope', ($scope) ->
