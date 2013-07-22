@@ -15,6 +15,10 @@ require.config
       '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min'
       '/components/components-bootstrap/js/bootstrap'
     ]
+    'bootstrap-css': [
+      # '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min'
+      '/components/components-bootstrap/css/bootstrap'
+    ]
     'socket.io': [
       # '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min'
       '/socket.io/socket.io.js'
@@ -23,6 +27,9 @@ require.config
     'directives':  'app/directives'
     'filters':     'app/filters'
     'services':    'app/services'
+    # plugins
+    'css':         '/components/require-css/css'
+    'normalize':   '/components/require-css/normalize'
   shim:
     'angular':
       exports: 'angular'
@@ -31,6 +38,8 @@ require.config
       deps: ['jquery']
     'app':
       deps: [
+        'css!/style/style'
+        'css!bootstrap-css'
         'angular'
         'bootstrap'
         'socket.io'
