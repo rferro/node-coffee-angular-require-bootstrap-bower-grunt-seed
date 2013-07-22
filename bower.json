@@ -1,8 +1,10 @@
 {
   "dependencies": {
-    "angular": "~1.0.0",
-    "jquery": "~2.0.0",
+    "angular": "1.0.7",
+    "jquery": "2.0.3",
     "requirejs": "~2.1.0",
-    "components-bootstrap": "~2.3.0"
+    "components-bootstrap": "2.3.2",
+    "require-css": "~0.0.6",
+    "requirejs-domready": "~2.0.1"
   }
 }
