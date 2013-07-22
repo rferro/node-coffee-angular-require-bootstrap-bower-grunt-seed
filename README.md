@@ -10,6 +10,9 @@ Seed project for development using:
  - Twitter Bootstrap
  - Bower
  - Grunt
+ - Less
+ - LessHAT
+ - require-css
 
 ```
 git clone https://github.com/rferro/node-coffee-angular-require-bootstrap-bower-grunt-seed.git
