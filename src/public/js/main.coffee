@@ -22,7 +22,7 @@ require.config
       '/components/components-bootstrap/css/bootstrap'
     ]
     'socket.io': [
-      # '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min'
+      '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min'
       '/socket.io/socket.io.js'
     ]
     # app
