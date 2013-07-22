@@ -2,6 +2,7 @@
 require.config
   baseUrl: '/js'
   paths:
+    # components
     'jquery': [
       '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min'
       '/components/jquery/jquery.min'
@@ -23,6 +24,7 @@ require.config
       # '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min'
       '/socket.io/socket.io.js'
     ]
+    # app
     'controllers': 'app/controllers'
     'directives':  'app/directives'
     'filters':     'app/filters'
