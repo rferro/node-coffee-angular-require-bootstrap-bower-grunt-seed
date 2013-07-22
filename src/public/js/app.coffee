@@ -1,6 +1,6 @@
 
 define ['angular'], (angular) ->
-  angular.module('app', [])
+  angular.module('app', ['app.controllers', 'app.directives', 'app.filters', 'app.services'])
     .config(
       [
         '$routeProvider'

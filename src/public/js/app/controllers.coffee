@@ -1,5 +1,7 @@
 
-define ['app'], (app) ->
+define ['angular'], (angular) ->
+  app = angular.module 'app.controllers', []
+
   app.controller 'AppCtrl', ['$scope', ($scope) ->
     $scope.name = 'World'
   ]
