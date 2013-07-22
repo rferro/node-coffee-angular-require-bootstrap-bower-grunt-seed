@@ -21,8 +21,8 @@ npm install && bower install
 grunt dev
 node _dev/app.js
 ```
+And access http://127.0.0.1:8000 in browser.
 
 See Gruntfile.coffee for more details.
 
 ### Contribute!
-
