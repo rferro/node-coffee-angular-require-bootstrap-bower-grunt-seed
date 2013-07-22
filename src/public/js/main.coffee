@@ -11,7 +11,7 @@ require.config
       '//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min'
       '/components/angular/angular.min'
     ]
-    'bootstrap': [
+    'bootstrap-js': [
       '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min'
       '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min'
       '/components/components-bootstrap/js/bootstrap'
@@ -36,14 +36,14 @@ require.config
     'angular':
       exports: 'angular'
       deps: ['jquery']
-    'bootstrap':
+    'bootstrap-js':
       deps: ['jquery']
     'app':
       deps: [
         'css!/style/style'
         'css!bootstrap-css'
         'angular'
-        'bootstrap'
+        'bootstrap-js'
         'socket.io'
         'controllers'
         'directives'
