@@ -60,5 +60,4 @@ require.config
         'app.services'
       ]
 
-require ['angular', 'app', 'domReady!'], (angular, app) ->
-  angular.bootstrap document, ['app']
+require ['domReady!', 'app']

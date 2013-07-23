@@ -17,3 +17,5 @@ define ['angular'], (angular) ->
             .state('view3', url: '/view3', templateUrl: '/partials/view3.html', controller: 'ViewCtrl3')
       ]
     )
+
+  angular.bootstrap document, ['app']
