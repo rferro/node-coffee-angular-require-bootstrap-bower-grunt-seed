@@ -44,6 +44,8 @@ require.config
       deps:    ['jquery']
     'bootstrap-js':
       deps: ['jquery']
+    'angular-ui-router':
+      deps: ['angular']
     'app':
       deps: [
         'css!/style/style'
