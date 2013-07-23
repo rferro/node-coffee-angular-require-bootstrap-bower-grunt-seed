@@ -26,19 +26,19 @@ require.config
       '/socket.io/socket.io.js'
     ]
     # app
-    'app':         'app/index'
-    'controllers': 'app/controllers'
-    'directives':  'app/directives'
-    'filters':     'app/filters'
-    'services':    'app/services'
+    'app':             'app/index'
+    'app.controllers': 'app/controllers'
+    'app.directives':  'app/directives'
+    'app.filters':     'app/filters'
+    'app.services':    'app/services'
     # plugins
-    'css':         '/components/require-css/css'
-    'normalize':   '/components/require-css/normalize'
-    'domReady':    '/components/requirejs-domready/domReady'
+    'css':       '/components/require-css/css'
+    'normalize': '/components/require-css/normalize'
+    'domReady':  '/components/requirejs-domready/domReady'
   shim:
     'angular':
       exports: 'angular'
-      deps: ['jquery']
+      deps:    ['jquery']
     'bootstrap-js':
       deps: ['jquery']
     'app':
@@ -48,10 +48,10 @@ require.config
         'angular'
         'bootstrap-js'
         'socket.io'
-        'controllers'
-        'directives'
-        'filters'
-        'services'
+        'app.controllers'
+        'app.directives'
+        'app.filters'
+        'app.services'
       ]
 
 require ['angular', 'app', 'domReady!'], (angular, app) ->
