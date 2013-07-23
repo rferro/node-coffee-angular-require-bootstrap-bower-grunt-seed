@@ -26,6 +26,7 @@ require.config
       '/socket.io/socket.io.js'
     ]
     # app
+    'app':         'app/index'
     'controllers': 'app/controllers'
     'directives':  'app/directives'
     'filters':     'app/filters'
