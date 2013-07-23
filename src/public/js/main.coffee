@@ -11,6 +11,9 @@ require.config
       '//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min'
       '/components/angular/angular.min'
     ]
+    'angular-ui-router': [
+      '/components/ui-router/release/angular-ui-router.min'
+    ]
     'bootstrap-js': [
       '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min'
       '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min'
@@ -46,6 +49,7 @@ require.config
         'css!/style/style'
         'css!bootstrap-css'
         'angular'
+        'angular-ui-router'
         'bootstrap-js'
         'socket.io'
         'app.controllers'
