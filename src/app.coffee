@@ -2,6 +2,7 @@
 express = require 'express'
 http    = require 'http'
 path    = require 'path'
+os      = require 'os'
 
 app     = express()
 server  = http.createServer app
@@ -44,6 +45,20 @@ io.sockets.on 'connection', (socket) ->
   setTimeout(
     ->
       socket.emit 'serverEvent', 'test event ' + ++i
+      setTimeout arguments.callee, 1000
+    0
+  )
+
+  setTimeout(
+    ->
+      socket.emit 'loadavg', os.loadavg()
+      setTimeout arguments.callee, 2000
+    0
+  )
+
+  setTimeout(
+    ->
+      socket.emit 'uptime', os.uptime()
       setTimeout arguments.callee, 1000
     0
   )

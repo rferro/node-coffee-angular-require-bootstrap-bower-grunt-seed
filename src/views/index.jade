@@ -21,7 +21,7 @@ body(ng-controller='AppCtrl', style="display: none")
             a.btn(href='/view1') /view1
             a.btn(href='/view2') /view2
             a.btn(href='/view3') /view3
-        div(ng-view)
+        div.well(ui-view)
     .row-fluid
       .span6(ng-controller='SocketCtrl')
         h2 Socket.io Events 1

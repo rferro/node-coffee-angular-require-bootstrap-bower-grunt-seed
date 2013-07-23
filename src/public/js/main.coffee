@@ -11,6 +11,9 @@ require.config
       '//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min'
       '/components/angular/angular.min'
     ]
+    'angular-ui-router': [
+      '/components/ui-router/release/angular-ui-router.min'
+    ]
     'bootstrap-js': [
       '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min'
       '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min'
@@ -26,32 +29,35 @@ require.config
       '/socket.io/socket.io.js'
     ]
     # app
-    'controllers': 'app/controllers'
-    'directives':  'app/directives'
-    'filters':     'app/filters'
-    'services':    'app/services'
+    'app':             'app/index'
+    'app.controllers': 'app/controllers'
+    'app.directives':  'app/directives'
+    'app.filters':     'app/filters'
+    'app.services':    'app/services'
     # plugins
-    'css':         '/components/require-css/css'
-    'normalize':   '/components/require-css/normalize'
-    'domReady':    '/components/requirejs-domready/domReady'
+    'css':       '/components/require-css/css'
+    'normalize': '/components/require-css/normalize'
+    'domReady':  '/components/requirejs-domready/domReady'
   shim:
     'angular':
       exports: 'angular'
-      deps: ['jquery']
+      deps:    ['jquery']
     'bootstrap-js':
       deps: ['jquery']
+    'angular-ui-router':
+      deps: ['angular']
     'app':
       deps: [
         'css!/style/style'
         'css!bootstrap-css'
         'angular'
+        'angular-ui-router'
         'bootstrap-js'
         'socket.io'
-        'controllers'
-        'directives'
-        'filters'
-        'services'
+        'app.controllers'
+        'app.directives'
+        'app.filters'
+        'app.services'
       ]
 
-require ['angular', 'app', 'domReady!'], (angular, app) ->
-  angular.bootstrap document, ['app']
+require ['domReady!', 'app']
