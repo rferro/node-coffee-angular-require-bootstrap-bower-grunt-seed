@@ -12,7 +12,7 @@ require.config
       '/components/angular/angular.min'
     ]
     'angular-ui-router': [
-      '/components/ui-router/release/angular-ui-router.min'
+      '/components/angular-ui-router/release/angular-ui-router.min'
     ]
     'bootstrap-js': [
       '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min'
