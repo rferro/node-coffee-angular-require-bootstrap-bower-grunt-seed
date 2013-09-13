@@ -8,21 +8,17 @@ require.config
       '/components/jquery/jquery.min'
     ]
     'angular': [
-      '//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min'
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min'
       '/components/angular/angular.min'
     ]
-    'angular-ui-router': [
-      '/components/angular-ui-router/release/angular-ui-router.min'
-    ]
     'bootstrap-js': [
-      '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min'
-      '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min'
-      '/components/components-bootstrap/js/bootstrap'
+      '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min'
+      '/components/bootstrap/dist/js/bootstrap.min'
     ]
     'bootstrap-css': [
       # require-css don't have support to fallback, for now use the local file
-      # '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min'
-      '/components/components-bootstrap/css/bootstrap'
+      # '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min'
+      '/components/bootstrap/dist/css/bootstrap.min'
     ]
     'socket.io': [
       '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min'
@@ -37,21 +33,17 @@ require.config
     # plugins
     'css':       '/components/require-css/css'
     'normalize': '/components/require-css/normalize'
-    'domReady':  '/components/requirejs-domready/domReady'
   shim:
     'angular':
       exports: 'angular'
       deps:    ['jquery']
     'bootstrap-js':
       deps: ['jquery']
-    'angular-ui-router':
-      deps: ['angular']
     'app':
       deps: [
         'css!/style/style'
         'css!bootstrap-css'
         'angular'
-        'angular-ui-router'
         'bootstrap-js'
         'socket.io'
         'app.controllers'
@@ -60,4 +52,4 @@ require.config
         'app.services'
       ]
 
-require ['domReady!', 'app']
+require ['app']
