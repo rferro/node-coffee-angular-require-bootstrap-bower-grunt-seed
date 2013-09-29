@@ -9,14 +9,17 @@ define ['angular'], (angular) ->
   app.controller 'SocketCtrl', ['$scope', 'socket', ($scope, socket) ->
     socket          = socket.getInstance null, 'force new connection': true
     $scope.messages = []
+    $scope.started  = false
 
     $scope.start = ->
+      $scope.started  = true
       socket.removeAllListeners('serverEvent')
       socket.on 'serverEvent', (data) ->
         $scope.messages.push date: Date.now(), data: data
         $scope.messages = $scope.messages.splice -5
 
     $scope.stop = ->
+      $scope.started  = false
       socket.removeAllListeners('serverEvent')
       $scope.messages = []
 
