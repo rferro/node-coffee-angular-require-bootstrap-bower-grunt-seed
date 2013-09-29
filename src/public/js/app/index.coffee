@@ -1,7 +1,18 @@
 
 define ['angular'], (angular) ->
-  angular.module('app', ['app.controllers', 'app.directives', 'app.filters', 'app.services'])
-    .config(
+  app = angular.module(
+    'app',
+    [
+      'ngRoute'
+      'ngAnimate'
+      'app.controllers'
+      'app.directives'
+      'app.filters'
+      'app.services'
+    ]
+  )
+
+  app.config(
       [
         '$routeProvider'
         '$locationProvider'
@@ -13,7 +24,7 @@ define ['angular'], (angular) ->
             .when('/view1', templateUrl: '/partials/view1.html', controller: 'ViewCtrl1')
             .when('/view2', templateUrl: '/partials/view2.html', controller: 'ViewCtrl2')
             .when('/view3', templateUrl: '/partials/view3.html', controller: 'ViewCtrl3')
-            .otherwise '/'
+            .otherwise(redirectTo: '/')
       ]
     )
 
