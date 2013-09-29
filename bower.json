@@ -2,6 +2,8 @@
   "name": "node-coffee-angular-require-bootstrap-bower-grunt-seed",
   "dependencies": {
     "angular": "1.2.0-rc.2",
+    "angular-route": "~1.2.0-rc.2",
+    "angular-animate": "~1.2.0-rc.2",
     "bootstrap": "~3.0.0",
     "jquery": "2.0.3",
     "requirejs": "2.1.8",
