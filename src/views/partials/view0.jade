@@ -1,8 +1,9 @@
-.alert.alert-success
-  = "Realtime Load AVG: "
-  span(ng-repeat="value in loadavg")
-    .badge.badge-success {{ value }}
-    = " "
-.alert.alert-success
-  = "Realtime Uptime: "
-  .badge.badge-success {{ uptime }}m
+.col-md-12
+  .alert.alert-success
+    = "Realtime Load AVG: "
+    span(ng-repeat="value in loadavg")
+      .label.label-success {{ value }}
+      = " "
+  .alert.alert-success
+    = "Realtime Uptime: "
+    .label.label-success {{ uptime }}m

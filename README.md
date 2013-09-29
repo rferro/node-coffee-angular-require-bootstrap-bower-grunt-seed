@@ -5,15 +5,14 @@ Seed project for development using:
 
  - Node.js
  - Coffeescript
- - AngularJS
+ - AngularJS 1.2.0 !!! (angular-route, angular-animate)
  - RequireJS
- - Twitter Bootstrap
+ - Twitter Bootstrap 3 !!!
  - Bower
  - Grunt
  - Less
  - LessHAT
  - require-css
- - requirejs-domready
 
 ```
 git clone https://github.com/rferro/node-coffee-angular-require-bootstrap-bower-grunt-seed.git

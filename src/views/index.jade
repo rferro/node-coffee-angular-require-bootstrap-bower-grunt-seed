@@ -6,41 +6,49 @@ html
     title= package.name
     script(data-main='/js/main', src='/components/requirejs/require.js')
 body(ng-controller='AppCtrl', style="display: none")
-  .navbar.navbar-inverse.navbar-fixed-top
-    .navbar-inner
-      .container-fluid
-        a.brand(href='/', ng-cloak)= package.name
+  .navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle(data-toggle="collapse", data-target=".navbar-collapse")
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/')= package.name
+      .collapse.navbar-collapse
         p.navbar-text.pull-right= package.version
-  .container-fluid
-    .row-fluid
-      .span12
-        h2 ng-view
-        p.text-center
+  .container
+    .row
+      .col-md-12
+        .page-header
+          h1 ng-view
+        p
           .btn-group
-            a.btn(href='/') /
-            a.btn(href='/view1') /view1
-            a.btn(href='/view2') /view2
-            a.btn(href='/view3') /view3
-        div.well(ui-view)
-    .row-fluid
-      .span6(ng-controller='SocketCtrl')
-        h2 Socket.io Events 1
-        p.text-center
+            a.btn.btn-default(href='/') /
+            a.btn.btn-default(href='/view1') /view1
+            a.btn.btn-default(href='/view2') /view2
+            a.btn.btn-default(href='/view3') /view3
+        div.row(ng-view)
+    .row
+      .col-md-6(ng-controller='SocketCtrl')
+        .page-header
+          h2 Socket.io Events 1
+        p
           .btn-group
-            button.btn(ng-click="start()") Start
-            button.btn(ng-click="stop()") Stop
-        .alert.text-center(ng-hide="messages.length") No Data
+            button.btn.btn-default(ng-click="start()", ng-class="{ disabled: started }") Start
+            button.btn.btn-default(ng-click="stop()", ng-class="{ disabled: !started }") Stop
+        .alert.alert-info.text-center(ng-hide="messages.length") No Data
         table.table.table-condensed.table-bordered.table-striped.table-hover(ng-cloak, ng-show="messages.length")
           tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
             td {{ message.date | date:'medium' }}
             td {{ message.data }}
-      .span6(ng-controller='SocketCtrl')
-        h2 Socket.io Events 2
-        p.text-center
+      .col-md-6(ng-controller='SocketCtrl')
+        .page-header
+          h2 Socket.io Events 2
+        p
           .btn-group
-            button.btn(ng-click="start()") Start
-            button.btn(ng-click="stop()") Stop
-        .alert.text-center(ng-hide="messages.length") No Data
+            button.btn.btn-default(ng-click="start()", ng-class="{ disabled: started }") Start
+            button.btn.btn-default(ng-click="stop()", ng-class="{ disabled: !started }") Stop
+        .alert.alert-info.text-center(ng-hide="messages.length") No Data
         table.table.table-condensed.table-bordered.table-striped.table-hover(ng-cloak, ng-show="messages.length")
           tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
             td {{ message.date | date:'medium' }}
