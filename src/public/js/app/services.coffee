@@ -2,24 +2,6 @@
 define ['angular'], (angular) ->
   app = angular.module 'app.services', []
 
-  app.config(
-    [
-      '$httpProvider'
-      ($httpProvider) ->
-        numLoadings   = 0
-        loadingScreen = $('<div class="serviceLoading"><div class="dot"></div></div>').hide().appendTo $('body')
-
-        $httpProvider.responseInterceptors.push ->
-          (promise) ->
-            numLoadings++
-            loadingScreen.fadeIn('fast')
-            hide = (r) ->
-              loadingScreen.fadeOut('fast') unless --numLoadings
-              r
-            promise.then hide, hide
-    ]
-  )
-
   app.service 'socket', ['$rootScope', ($rootScope) ->
     @getInstance = (host, details) ->
       socket = io.connect host, details

@@ -28,4 +28,22 @@ define ['angular'], (angular) ->
       ]
     )
 
+  app.config(
+    [
+      '$httpProvider'
+      ($httpProvider) ->
+        numLoadings   = 0
+        loadingScreen = $('<div class="serviceLoading"><div class="dot"></div></div>').hide().appendTo $('body')
+
+        $httpProvider.responseInterceptors.push ->
+          (promise) ->
+            numLoadings++
+            loadingScreen.fadeIn('fast')
+            hide = (r) ->
+              loadingScreen.fadeOut('fast') unless --numLoadings
+              r
+            promise.then hide, hide
+    ]
+  )
+
   angular.bootstrap document, ['app']
