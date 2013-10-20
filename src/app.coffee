@@ -21,8 +21,6 @@ app.configure ->
   app.set     'view engine',  'jade'
   app.engine  'jade',         require('jade').__express
 
-  app.use express.bodyParser()
-  app.use express.methodOverride()
   app.use express.static path.join(__dirname, 'public')
   app.use app.router
 
