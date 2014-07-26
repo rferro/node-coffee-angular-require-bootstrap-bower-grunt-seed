@@ -20,7 +20,7 @@ git clone https://github.com/rferro/node-coffee-angular-require-bootstrap-bower-
 cd node-coffee-angular-require-bootstrap-bower-grunt-seed
 npm install && bower install
 grunt dev
-node _dev/app.js
+DEBUG=* npm start
 ```
 And open http://127.0.0.1:8000 in browser.
 
