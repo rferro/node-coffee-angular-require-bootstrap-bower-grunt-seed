@@ -1,9 +1,10 @@
-!!! 5
+doctype
 html
   head
     meta(charset='utf-8')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title= package.name
+    link(rel="icon", href="data:;base64,=")
+    title= app.name
     script(data-main='/js/main', src='/components/requirejs/require.js')
 body(ng-controller='AppCtrl', style="display: none")
   .navbar.navbar-default.navbar-fixed-top
@@ -13,9 +14,9 @@ body(ng-controller='AppCtrl', style="display: none")
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href='/')= package.name
+        a.navbar-brand(href='/')= app.name
       .collapse.navbar-collapse
-        p.navbar-text.pull-right= package.version
+        p.navbar-text.pull-right= app.version
   .container
     .row
       .col-md-12

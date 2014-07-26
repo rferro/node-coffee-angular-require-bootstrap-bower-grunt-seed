@@ -1,7 +1,7 @@
 .col-md-12
   .alert.alert-success
     = "Realtime Load AVG: "
-    span(ng-repeat="value in loadavg")
+    span(ng-repeat="value in loadavg track by $index")
       .label.label-success {{ value }}
       = " "
   .alert.alert-success
