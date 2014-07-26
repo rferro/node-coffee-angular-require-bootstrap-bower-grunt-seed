@@ -4,36 +4,35 @@ require.config
   paths:
     # components
     'jquery': [
-      '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min'
-      '/components/jquery/jquery.min'
+      '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min'
+      '/components/jquery/dist/jquery.min'
     ]
     'angular': [
-      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min'
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min'
       '/components/angular/angular.min'
     ]
     'angular-route': [
-      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-route'
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route'
       '/components/angular-route/angular-route'
     ]
     'angular-animate': [
-      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate'
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate'
       '/components/angular-animate/angular-animate'
     ]
     'bootstrap-js': [
-      '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min'
+      '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min'
       '/components/bootstrap/dist/js/bootstrap.min'
     ]
     'bootstrap-css': [
       # require-css don't have support to fallback, for now use the local file
-      # '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min'
+      # '//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min'
       '/components/bootstrap/dist/css/bootstrap.min'
     ]
     'bootstrap-css-theme': [
       '/components/bootstrap/dist/css/bootstrap-theme.min'
     ]
     'socket.io': [
-      '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min'
-      '/socket.io/socket.io.js'
+      '/socket.io/socket.io'
     ]
     # app
     'app':             'app/index'
@@ -54,6 +53,8 @@ require.config
       deps:    ['angular']
     'bootstrap-js':
       deps: ['jquery']
+    'socket.io':
+      exports: 'io'
     'app':
       deps: [
         'css!/style/style'
@@ -70,4 +71,6 @@ require.config
         'app.services'
       ]
 
-require ['app']
+define ['socket.io'], (io) ->
+  window.io = io
+  require ['app']
