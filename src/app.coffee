@@ -1,33 +1,42 @@
 
-express = require 'express'
-http    = require 'http'
-path    = require 'path'
-os      = require 'os'
+debug           = require('debug')('app')
 
-app     = express()
-server  = http.createServer app
-io      = require('socket.io').listen(server)
+http            = require('http')
+path            = require('path')
+os              = require('os')
 
-io.configure 'production', () ->
-  io.set 'log level', 1
+express         = require('express')
+bodyParser      = require('body-parser')
+compression     = require('compression')
+cookieParser    = require('cookie-parser')
+methodOverride  = require('method-override')
+errorHandler    = require('errorhandler')
+morgan          = require('morgan')
+responseTime    = require('response-time')
 
-io.configure 'development', () ->
-  io.set 'log level', 3
+app             = express()
+app.locals.app  = require('../package.json')
+server          = http.createServer app
+io              = require('socket.io')(server)
 
-app.configure ->
-  app.set     'port',         process.env.PORT || 8000
+app.set 'port',         process.env.PORT || 8000
+app.set 'views',        path.join(__dirname, 'views')
+app.set 'view engine',  'jade'
 
-  app.set     'views',        path.join(__dirname, 'views')
-  app.set     'view engine',  'jade'
-  app.engine  'jade',         require('jade').__express
+switch app.get('env')
+  when 'development'
+    app.use errorHandler()
+    app.use morgan('dev')
+  when 'production'
+    app.use morgan('combined')
 
-  app.use express.static path.join(__dirname, 'public')
-  app.use app.router
-
-  app.locals.package = require './package'
-
-app.configure 'development', ->
-  app.use express.errorHandler()
+app.use express.static path.join(__dirname, 'public')
+app.use bodyParser.urlencoded(extended: false)
+app.use bodyParser.json()
+app.use compression()
+app.use cookieParser('HASH')
+app.use methodOverride()
+app.use responseTime()
 
 app.get '/partials/:partial.html', (req, res) ->
   res.render "partials/#{req.params.partial}"
@@ -35,30 +44,37 @@ app.get '/partials/:partial.html', (req, res) ->
 app.get '*', (req, res) ->
   res.render 'index'
 
-io.sockets.on 'connection', (socket) ->
+io.on 'connection', (socket) ->
   socket.emit 'serverEvent', 'client connect event'
 
   i = 0
 
+  timeouts = []
+
   setTimeout(
     ->
       socket.emit 'serverEvent', 'test event ' + ++i
-      setTimeout arguments.callee, 1000
+      timeouts[0] = setTimeout arguments.callee, 1000
     0
   )
 
   setTimeout(
     ->
       socket.emit 'loadavg', os.loadavg()
-      setTimeout arguments.callee, 2000
+      timeouts[1] = setTimeout arguments.callee, 2000
     0
   )
 
   setTimeout(
     ->
       socket.emit 'uptime', os.uptime()
-      setTimeout arguments.callee, 1000
+      timeouts[2] = setTimeout arguments.callee, 1000
     0
   )
 
-server.listen app.get('port'), -> console.log 'on port ' + app.get('port')
+  socket.on 'disconnect', ->
+    for to in timeouts
+      clearTimeout to
+
+server.listen app.get('port'), ->
+  debug 'on port %s', app.get('port')
