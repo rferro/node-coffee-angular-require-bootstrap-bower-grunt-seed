@@ -3,8 +3,8 @@ define ['angular'], (angular) ->
   app = angular.module 'app.services', []
 
   app.service 'socket', ['$rootScope', ($rootScope) ->
-    @getInstance = (host, details) ->
-      socket = io.connect host, details
+    getInstance: (host, details) ->
+      socket = io host, details
 
       on: (eventName, callback) ->
         socket.on eventName, ->

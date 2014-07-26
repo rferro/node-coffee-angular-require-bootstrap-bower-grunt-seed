@@ -7,13 +7,13 @@ define ['angular'], (angular) ->
   ]
 
   app.controller 'SocketCtrl', ['$scope', 'socket', ($scope, socket) ->
-    socket          = socket.getInstance null, 'force new connection': true
+    socket          = socket.getInstance forceNew: true
     $scope.messages = []
     $scope.started  = false
 
     $scope.start = ->
       $scope.started  = true
-      socket.removeAllListeners('serverEvent')
+      # socket.removeAllListeners('serverEvent')
       socket.on 'serverEvent', (data) ->
         $scope.messages.push date: Date.now(), data: data
         $scope.messages = $scope.messages.splice -5
@@ -27,7 +27,7 @@ define ['angular'], (angular) ->
   ]
 
   app.controller 'ViewCtrl0', ['$scope', 'socket', ($scope, socket) ->
-    socket         = socket.getInstance null, 'force new connection': true
+    socket         = socket.getInstance forceNew: true
     $scope.text    = 'ViewCtrl0 Text'
     $scope.loadavg = []
     $scope.uptime  = 0
