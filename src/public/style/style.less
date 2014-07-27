@@ -12,6 +12,18 @@ body
   display: none;
 }
 
+.ng-enter,
+.ng-add
+{
+  .animation(~"lightSpeedIn 1s");
+}
+
+.ng-leave,
+.ng-remove
+{
+  .animation(~"bounceOut 0.5s");
+}
+
 .serviceLoading
 {
   // http://codepen.io/jshawl/pen/IFxBK
