@@ -113,6 +113,12 @@ module.exports = (grunt) ->
             src:    '**'
             dest:   '<%= dirs.dev %>/public/components'
           }
+          {
+            expand: true
+            cwd:    'src/public/style/images'
+            src:    '**'
+            dest:   '<%= dirs.dev %>/public/style/images'
+          }
         ]
       dev_package:
         files: [
@@ -128,6 +134,15 @@ module.exports = (grunt) ->
             cwd:    'src/views'
             src:    '**'
             dest:   '<%= dirs.dev %>/views'
+          }
+        ]
+      dev_images:
+        files: [
+          {
+            expand: true
+            cwd:    'src/public/style/images'
+            src:    '**'
+            dest:   '<%= dirs.dev %>/public/style/images'
           }
         ]
       dev_components:
@@ -146,6 +161,12 @@ module.exports = (grunt) ->
             cwd:    'src/views'
             src:    '**'
             dest:   '<%= dirs.build %>/views'
+          }
+          {
+            expand: true
+            cwd:    'src/public/style/images'
+            src:    '**'
+            dest:   '<%= dirs.build %>/public/style/images'
           }
           {
             expand: true
@@ -171,6 +192,9 @@ module.exports = (grunt) ->
       components:
         files: ['components/**']
         tasks: ['clean:dev_components', 'copy:dev_components']
+      images:
+        files: ['src/public/style/images/**']
+        tasks: ['clean:dev_images', 'copy:dev_images']
       package:
         files: ['package.json']
         tasks: ['copy:dev_package', 'removeDevDependencies:dev']
@@ -179,6 +203,8 @@ module.exports = (grunt) ->
         src: '<%= dirs.dev %>/views'
       dev_components:
         src: '<%= dirs.dev %>/components'
+      dev_images:
+        src: '<%= dirs.dev %>/public/style/images'
       dev:
         src: '<%= dirs.dev %>'
       build:
