@@ -1,6 +1,6 @@
 {
   "name": "node-coffee-angular-require-bootstrap-bower-grunt-seed",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Simple seed project with Node.js + Coffee Script + Angular.js + Require.js + Twitter Bootstrap + Grunt + Bower",
   "repository": "rferro/node-coffee-angular-require-bootstrap-bower-grunt-seed",
   "author": {

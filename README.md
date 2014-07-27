@@ -5,13 +5,17 @@ Seed project for development using:
 
  - Node.js 0.10
  - Coffeescript 1.7
- - AngularJS 1.2 with angular-route and angular-animate
+ - AngularJS 1.2
+ - ngAnimate
+ - ngRoute
+ - angular-socket-io by btford
  - RequireJS 2.1
  - Twitter Bootstrap 3.2
  - Bower
  - Grunt
  - Less
  - LessHAT
+ - animate.css
  - require-css
  - debug
 
