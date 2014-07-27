@@ -3,12 +3,11 @@ html
   head
     meta(charset='utf-8')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="icon", href="data:;base64,=")
     title= app.name
-    script(data-main='/js/main', src='/components/requirejs/require.js')
+    script(data-main='/assets/js/main', src='/assets/components/requirejs/require.js')
 body(ng-controller='AppCtrl', style="display: none")
   .navbar.navbar-default.navbar-fixed-top
-    .container
+    .container-fluid
       .navbar-header
         button.navbar-toggle(data-toggle="collapse", data-target=".navbar-collapse")
           span.icon-bar
@@ -17,11 +16,11 @@ body(ng-controller='AppCtrl', style="display: none")
         a.navbar-brand(href='/')= app.name
       .collapse.navbar-collapse
         p.navbar-text.pull-right= app.version
-  .container
+  .container-fluid
     .row
-      .col-md-12
+      .col-md-4
         .page-header
-          h1 ng-view
+          h3 ng-view
         p
           .btn-group
             a.btn.btn-default(href='/') /
@@ -29,10 +28,9 @@ body(ng-controller='AppCtrl', style="display: none")
             a.btn.btn-default(href='/view2') /view2
             a.btn.btn-default(href='/view3') /view3
         div.row(ng-view)
-    .row
-      .col-md-6(ng-controller='SocketCtrl')
+      .col-md-4(ng-controller='SocketCtrl')
         .page-header
-          h2 Socket.io Events 1
+          h3 Socket.io Events 1
         p
           .btn-group
             button.btn.btn-default(ng-click="start()", ng-class="{ disabled: started }") Start
@@ -42,9 +40,9 @@ body(ng-controller='AppCtrl', style="display: none")
           tr(ng-repeat="message in messages | orderBy:'date':true | limitTo:5")
             td {{ message.date | date:'medium' }}
             td {{ message.data }}
-      .col-md-6(ng-controller='SocketCtrl')
+      .col-md-4(ng-controller='SocketCtrl')
         .page-header
-          h2 Socket.io Events 2
+          h3 Socket.io Events 2
         p
           .btn-group
             button.btn.btn-default(ng-click="start()", ng-class="{ disabled: started }") Start
