@@ -7,6 +7,8 @@
     "bootstrap": "~3.2.0",
     "jquery": "~2.1.1",
     "requirejs": "~2.1.14",
-    "require-css": "~0.1.5"
+    "require-css": "~0.1.5",
+    "animate.css": "~3.2.0",
+    "angular-socket-io": "~0.6.0"
   }
 }
