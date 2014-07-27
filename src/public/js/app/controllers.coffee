@@ -7,27 +7,28 @@ define ['angular'], (angular) ->
   ]
 
   app.controller 'SocketCtrl', ['$scope', 'socket', ($scope, socket) ->
-    socket          = socket.getInstance forceNew: true
+    socket          = socket.getInstance()
     $scope.messages = []
     $scope.started  = false
 
+    $scope.update = (data) ->
+      $scope.messages.push date: Date.now(), data: data
+      $scope.messages = $scope.messages.splice -5
+
     $scope.start = ->
       $scope.started  = true
-      # socket.removeAllListeners('serverEvent')
-      socket.on 'serverEvent', (data) ->
-        $scope.messages.push date: Date.now(), data: data
-        $scope.messages = $scope.messages.splice -5
+      socket.on 'serverEvent', $scope.update
 
     $scope.stop = ->
       $scope.started  = false
-      socket.removeAllListeners('serverEvent')
+      socket.removeListener('serverEvent', $scope.update)
       $scope.messages = []
 
     $scope.start()
   ]
 
   app.controller 'ViewCtrl0', ['$scope', 'socket', ($scope, socket) ->
-    socket         = socket.getInstance forceNew: true
+    socket         = socket.getInstance()
     $scope.text    = 'ViewCtrl0 Text'
     $scope.loadavg = []
     $scope.uptime  = 0
