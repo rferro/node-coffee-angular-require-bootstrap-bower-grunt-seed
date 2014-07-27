@@ -9,6 +9,7 @@ define ['angular'], (angular) ->
       'app.directives'
       'app.filters'
       'app.services'
+      'btford.socket-io'
     ]
   )
 
