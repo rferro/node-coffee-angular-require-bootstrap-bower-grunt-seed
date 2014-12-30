@@ -31,3 +31,7 @@ And open http://127.0.0.1:8000 in browser.
 See Gruntfile.coffee for more details.
 
 ### Contribute!
+
+## Licence
+
+[http://www.wtfpl.net](http://www.wtfpl.net)
